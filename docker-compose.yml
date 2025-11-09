@@ -5,8 +5,6 @@ services:
       - POSTGRES_DB=awad_week4_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=supersecret
-    ports:
-      - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped

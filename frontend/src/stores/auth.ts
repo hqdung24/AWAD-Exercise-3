@@ -24,7 +24,6 @@ export const useAuthStore = create<State & Action>()(
       }),
       {
         name: 'auth-store',
-        // chỉ persist field cần thiết
         partialize: (s) => ({
           isAuthenticated: s.isAuthenticated,
           accessToken: s.accessToken,

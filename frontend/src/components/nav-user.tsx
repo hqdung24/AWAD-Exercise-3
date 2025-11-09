@@ -23,6 +23,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { useNavigate } from 'react-router';
+import { useAuthStore } from '@/stores/auth';
 export function NavUser({
   user,
 }: {
@@ -34,7 +35,14 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar();
   const navigate = useNavigate();
-
+  const setAuth = useAuthStore((s) => s.setAuthenticated);
+  const handleSignout = () => {
+    // Clear authentication state (e.g., remove tokens, user info)
+    console.log('logging out');
+    setAuth(false);
+    // Redirect to sign-in page
+    navigate('/signin');
+  };
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -93,9 +101,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() => navigate('/signin', { replace: true })}
-            >
+            <DropdownMenuItem onClick={handleSignout}>
               <IconLogout />
               Log out
             </DropdownMenuItem>
